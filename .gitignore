@@ -18,7 +18,8 @@
 # Compiled Dynamic libraries
 *.so
 *.dylib
-*.dll
+*.pdb
+*.exp
 
 # Fortran module files
 *.mod
@@ -48,10 +49,6 @@
 # Precompiled Assets
 SourceArt/**/*.png
 SourceArt/**/*.tga
-
-# Binary Files
-Binaries/*
-Plugins/*/Binaries/*
 
 # Builds
 Build/*
