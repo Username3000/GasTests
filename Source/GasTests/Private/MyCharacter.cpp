@@ -13,6 +13,9 @@ AMyCharacter::AMyCharacter()
 	AbilitySystemComponent = CreateDefaultSubobject<UMyAbilitySystemComponent>("AbilitySystemComponent");
 	AbilitySystemComponent->SetIsReplicated(true);
 	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Full);
+
+	//Setup attribute sets
+	CharacterBasis = CreateDefaultSubobject<UCharacterBasis_AS>("Attibutes");
 }
 
 // Called when the game starts or when spawned

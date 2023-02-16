@@ -8,6 +8,7 @@
 #include "GameplayEffectTypes.h"
 #include "MyAbilitySystemComponent.h"
 #include "GameplayEffectTypes.h"
+#include "AttributeSets/CharacterBasis_AS.h"
 
 #include "MyCharacter.generated.h"
 
@@ -39,5 +40,11 @@ public:
 
 	//AbilitySystemComponent getr
 	virtual class UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+
+	//		ATTRIBUTE SETS		//
+
+	UPROPERTY()
+	class UCharacterBasis_AS* CharacterBasis;
+
 
 };
