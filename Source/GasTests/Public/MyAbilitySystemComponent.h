@@ -13,5 +13,10 @@ UCLASS()
 class GASTESTS_API UMyAbilitySystemComponent : public UAbilitySystemComponent
 {
 	GENERATED_BODY()
-	
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	bool WasSuccessfullyAppliedEffect(FActiveGameplayEffectHandle Handle);
+
+	UFUNCTION(BlueprintCallable)
+	bool ApplyDamageEffect(TSubclassOf<UGameplayEffect> DamageEffect, float EffectLevel, AController* Instigator);
 };
