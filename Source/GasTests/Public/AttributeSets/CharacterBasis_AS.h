@@ -41,4 +41,9 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "Health")
 	FGameplayAttributeData MaxHealth;
 	ATTRIBUTE_ACCESSORS(UCharacterBasis_AS, MaxHealth)
+
+	//Walk speed    JumpVelocity
+	UPROPERTY(BlueprintReadOnly, Category = "Movement")
+	FGameplayAttributeData WalkSpeed;
+	ATTRIBUTE_ACCESSORS(UCharacterBasis_AS, WalkSpeed)
 };
