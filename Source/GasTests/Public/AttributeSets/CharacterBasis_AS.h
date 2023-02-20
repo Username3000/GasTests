@@ -33,12 +33,12 @@ public:
 	//		ATTRIBUTES		//
 
 	//Health
-	UPROPERTY(BlueprintReadOnly, Category = "Health")
+	UPROPERTY(BlueprintReadOnly, Category = "Health", ReplicatedUsing = OnRep_Health)
 	FGameplayAttributeData Health;
 	ATTRIBUTE_ACCESSORS(UCharacterBasis_AS, Health)
 	
 	//Max health
-	UPROPERTY(BlueprintReadOnly, Category = "Health")
+	UPROPERTY(BlueprintReadOnly, Category = "Health", ReplicatedUsing = OnRep_Health)
 	FGameplayAttributeData MaxHealth;
 	ATTRIBUTE_ACCESSORS(UCharacterBasis_AS, MaxHealth)
 
@@ -46,4 +46,13 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "Movement")
 	FGameplayAttributeData WalkSpeed;
 	ATTRIBUTE_ACCESSORS(UCharacterBasis_AS, WalkSpeed)
+
+
+	UFUNCTION()
+	virtual void OnRep_Health(const FGameplayAttributeData& OldHealth);
+
+	UFUNCTION()
+	virtual void OnRep_MaxHealth(const FGameplayAttributeData& OldMaxHealth);
+
+
 };
