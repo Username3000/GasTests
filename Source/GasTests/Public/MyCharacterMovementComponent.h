@@ -18,4 +18,5 @@ private:
 	virtual void BeginPlay() override;
 
 	void UpdateWalkSpeed(float NewSpeed);
+	void UpdateAcceleration(float NewSpeed);
 };

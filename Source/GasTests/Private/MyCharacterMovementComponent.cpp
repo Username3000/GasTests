@@ -11,10 +11,18 @@ void UMyCharacterMovementComponent::BeginPlay()
 
 	UCharacterBasis_AS* attributeSet = Cast<AMyCharacter>(GetOwner())->CharacterBasis;
 	attributeSet->OnWalkSpeedChangedSignature.AddUObject(this, &UMyCharacterMovementComponent::UpdateWalkSpeed);
+	attributeSet->OnAccelerationChangedSignature.AddUObject(this, &UMyCharacterMovementComponent::UpdateAcceleration);
+
 	MaxWalkSpeed = attributeSet->GetWalkSpeedAttribute().GetNumericValue(attributeSet);
+	MaxAcceleration = attributeSet->GetAccelerationAttribute().GetNumericValue(attributeSet);
 }
 
 void UMyCharacterMovementComponent::UpdateWalkSpeed(float NewSpeed)
 {
 	MaxWalkSpeed = NewSpeed;
+}
+
+void UMyCharacterMovementComponent::UpdateAcceleration(float NewSpeed)
+{
+	MaxAcceleration = NewSpeed;
 }

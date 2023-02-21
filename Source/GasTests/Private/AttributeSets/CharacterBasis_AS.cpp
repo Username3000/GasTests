@@ -13,6 +13,7 @@ void UCharacterBasis_AS::GetLifetimeReplicatedProps(TArray<class FLifetimeProper
 	DOREPLIFETIME_CONDITION_NOTIFY(UCharacterBasis_AS, Health, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UCharacterBasis_AS, MaxHealth, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UCharacterBasis_AS, WalkSpeed, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UCharacterBasis_AS, Acceleration, COND_None, REPNOTIFY_Always);
 }
 
 void UCharacterBasis_AS::PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue)
@@ -32,6 +33,11 @@ void UCharacterBasis_AS::PostAttributeChange(const FGameplayAttribute& Attribute
 	if (Attribute == GetWalkSpeedAttribute())
 	{
 		OnWalkSpeedChangedSignature.Broadcast(NewValue);
+	}
+
+	if (Attribute == GetAccelerationAttribute())
+	{
+		OnAccelerationChangedSignature.Broadcast(NewValue);
 	}
 }
 
@@ -56,4 +62,9 @@ void UCharacterBasis_AS::OnRep_MaxHealth(const FGameplayAttributeData& OldMaxHea
 void UCharacterBasis_AS::OnRep_WalkSpeed(const FGameplayAttributeData& OldWalkSpeed)
 {
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UCharacterBasis_AS, WalkSpeed, OldWalkSpeed)
+}
+
+void UCharacterBasis_AS::OnRep_Acceleration(const FGameplayAttributeData& OldAcceleration)
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UCharacterBasis_AS, Acceleration, OldAcceleration)
 }
