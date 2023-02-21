@@ -12,10 +12,15 @@
 
 #include "MyCharacter.generated.h"
 
+class UMyCharacterMovementComponent;
+
 UCLASS()
 class GASTESTS_API AMyCharacter : public ACharacter, public IAbilitySystemInterface
 {
 	GENERATED_BODY()
+
+public:
+	AMyCharacter(const FObjectInitializer& ObjectInitializer);
 
 public:
 

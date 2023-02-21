@@ -2,9 +2,11 @@
 
 
 #include "MyCharacter.h"
+#include "MyCharacterMovementComponent.h"
 
 // Sets default values
-AMyCharacter::AMyCharacter()
+AMyCharacter::AMyCharacter(const FObjectInitializer& ObjectInitializer)
+	:Super(ObjectInitializer.SetDefaultSubobjectClass<UMyCharacterMovementComponent>(ACharacter::CharacterMovementComponentName))
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;

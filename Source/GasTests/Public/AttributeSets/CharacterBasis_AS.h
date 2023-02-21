@@ -14,6 +14,7 @@
 	GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \
 	GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
 
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnWalkSpeedChangedSignature, float);
 
 UCLASS()
 class GASTESTS_API UCharacterBasis_AS : public UAttributeSet
@@ -27,6 +28,9 @@ public:
 
 	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
 	virtual void PreAttributeBaseChange(const FGameplayAttribute& Attribute, float& NewValue) const override;
+	virtual void PostAttributeChange(const FGameplayAttribute& Attribute, float OldValue, float NewValue) override;
+
+	FOnWalkSpeedChangedSignature OnWalkSpeedChangedSignature;
 
 	void ClampAttributes(const FGameplayAttribute& Attribute, float& NewValue) const;
 
@@ -43,16 +47,21 @@ public:
 	ATTRIBUTE_ACCESSORS(UCharacterBasis_AS, MaxHealth)
 
 	//Walk speed    JumpVelocity
-	UPROPERTY(BlueprintReadOnly, Category = "Movement")
+	UPROPERTY(BlueprintReadOnly, Category = "Movement", ReplicatedUsing = OnRep_Health)
 	FGameplayAttributeData WalkSpeed;
 	ATTRIBUTE_ACCESSORS(UCharacterBasis_AS, WalkSpeed)
 
+
+	//		REPLICATION		//
 
 	UFUNCTION()
 	virtual void OnRep_Health(const FGameplayAttributeData& OldHealth);
 
 	UFUNCTION()
 	virtual void OnRep_MaxHealth(const FGameplayAttributeData& OldMaxHealth);
+
+	UFUNCTION()
+	virtual void OnRep_WalkSpeed(const FGameplayAttributeData& OldWalkSpeed);
 
 
 };
